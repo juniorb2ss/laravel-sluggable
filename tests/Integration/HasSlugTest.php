@@ -74,7 +74,7 @@ class HasSlugTest extends TestCase {
 	public function itCanGenerateSlugsFromACallable() {
 		$model = new class extends TestModel {
 			public function getSlugOptions() {
-				return parent::getSlugOptions()->generateSlugsFrom(function (TestModel $model): string {
+				return parent::getSlugOptions()->generateSlugsFrom(function (TestModel $model) {
 					return 'foo-' . str_slug($model->name);
 				});
 			}
@@ -120,7 +120,7 @@ class HasSlugTest extends TestCase {
 	 * @test
 	 * @dataProvider weirdCharacterProvider
 	 */
-	public function itCanHandleWeirdCharactersWhenGeneratingTheSlug(string $weirdCharacter, string $normalCharacter) {
+	public function itCanHandleWeirdCharactersWhenGeneratingTheSlug($weirdCharacter, $normalCharacter) {
 		$model = TestModel::create(['name' => $weirdCharacter]);
 
 		$this->assertEquals($normalCharacter, $model->url);

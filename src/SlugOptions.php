@@ -30,7 +30,7 @@ class SlugOptions {
 		return $this;
 	}
 
-	public function saveSlugsTo(string $fieldName) {
+	public function saveSlugsTo($fieldName) {
 		$this->slugField = $fieldName;
 
 		return $this;
@@ -42,7 +42,7 @@ class SlugOptions {
 		return $this;
 	}
 
-	public function slugsShouldBeNoLongerThan(int $maximumLength) {
+	public function slugsShouldBeNoLongerThan($maximumLength) {
 		$this->maximumLength = $maximumLength;
 
 		return $this;

@@ -47,7 +47,7 @@ abstract class TestCase extends Orchestra {
 		});
 	}
 
-	protected function initializeDirectory(string $directory) {
+	protected function initializeDirectory($directory) {
 		if (File::isDirectory($directory)) {
 			File::deleteDirectory($directory);
 		}

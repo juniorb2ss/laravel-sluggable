@@ -19,7 +19,9 @@ class TestModel extends Model {
 	 * Get the options for generating the slug.
 	 */
 	public function getSlugOptions() {
-		return $this->slugOptions ?? $this->getDefaultSlugOptions();
+		return isset($this->slugOptions) ?
+		$this->slugOptions :
+		$this->getDefaultSlugOptions();
 	}
 
 	/**

@@ -77,8 +77,8 @@ trait HasSlug {
 		}
 
 		$slugSourceString = collect($this->slugOptions->generateSlugFrom)
-			->map(function (string $fieldName) {
-				return $this->$fieldName ?? '';
+			->map(function ($fieldName) {
+				return isset($this->$fieldName) ? $this->$fieldName : '';
 			})
 			->implode('-');
 
@@ -88,7 +88,7 @@ trait HasSlug {
 	/**
 	 * Make the given slug unique.
 	 */
-	protected function makeSlugUnique(string $slug) {
+	protected function makeSlugUnique($slug) {
 		$originalSlug = $slug;
 		$i = 1;
 
@@ -102,9 +102,9 @@ trait HasSlug {
 	/**
 	 * Determine if a record exists with the given slug.
 	 */
-	protected function otherRecordExistsWithSlug(string $slug) {
+	protected function otherRecordExistsWithSlug($slug) {
 		return (bool) static::where($this->slugOptions->slugField, $slug)
-			->where($this->getKeyName(), '!=', $this->getKey() ?? '0')
+			->where($this->getKeyName(), '!=', $this->getKey() ?: '0')
 			->first();
 	}
 
